@@ -10,3 +10,7 @@ echo "== List buckets"
 
 aws s3 ls
 aws s3api list-buckets --query "Buckets[].Name" --output text | tr '\t' '\n' | sort
+
+
+git config --global user.name "pedroodias7"
+git config --global user.email "pedrodias2k14@gmail.com"
