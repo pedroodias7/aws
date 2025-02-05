@@ -1,0 +1,21 @@
+#! /usr/bin/env bash
+
+echo "== Insert Files in Bucket =="
+
+# Bucket name
+BUCKET_NAME="bucket-pds-1-pt"
+
+# Loop to create and upload 5 files
+for i in {1..5}
+do
+  # Create a file with some content (e.g., "This is file number i")
+  echo "This is file number $i" > file$i.txt
+  
+  # Upload the file to the S3 bucket
+  aws s3api put-object --bucket $BUCKET_NAME --key "file$i.txt" --body file$i.txt
+  
+  # Optional: Remove the local file after uploading
+  rm file$i.txt
+  
+  echo "Uploaded file$i.txt to s3://$BUCKET_NAME/file$i.txt"
+done
