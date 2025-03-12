@@ -7,7 +7,7 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
-BUCKET_NAME=$1
+BUCKET_NAME="m-buck-pds123"
 
 aws s3api delete-bucket --bucket $BUCKET_NAME --output text
 

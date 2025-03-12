@@ -18,3 +18,4 @@ resource "aws_s3_object" "object" {
 
   etag = filemd5("file.txt")
 }
+

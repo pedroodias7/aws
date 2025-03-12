@@ -1,0 +1,13 @@
+{
+  "name": "example-image-pipeline",
+  "description": "Este é um exemplo de pipeline para criação de imagens.",
+  "imageRecipeArn": "arn:aws:imagebuilder:eu-central-1:571600836219:image-recipe/my-image-recipe/1.0.0",
+  "infrastructureConfigurationArn": "arn:aws:imagebuilder:eu-central-1:571600836219:infrastructure-configuration/my-infrastructure-config",
+  "distributionConfigurationArn": "arn:aws:imagebuilder:eu-central-1:571600836219:distribution-configuration/my-distribution-config",
+  "schedule": {
+    "scheduleExpression": "cron(0 12 * * ? *)",
+    "timezone": "UTC",
+    "pipelineExecutionStartCondition": "EXPRESSION_MATCH_ONLY"
+  }
+}
+

@@ -1,0 +1,38 @@
+- name: Launch EC2 instance
+  hosts: localhost
+  gather_facts: no
+  tasks:"  # Change to your preferred AWS region
+        wait: yes
+      register: ec2_instance
+
+    - name: Show instance info
+      debug:
+        msg: "Instance {{ ec2_instance.instance_ids }} created successfully!"
+
+- name: Create VPC and Subnet in AWS
+  hosts: localhost
+  gather_facts: no
+  tasks:
+
+    - name: Create VPC
+      amazon.aws.ec2_vpc_net:
+        name: ansible_vpc
+        cidr_block: "10.0.0.0/16"
+        region: "eu-central-1"
+        state: present
+      register: vpc_result
+
+    - name: Create Subnet
+      amazon.aws.ec2_vpc_subnet:
+        vpc_id: "{{ vpc_result.vpc.id }}"
+        cidr: "10.0.1.0/24"
+        region: "eu-central-1"
+        state: present
+        map_public: true
+      register: subnet_result
+
+    - name: Show VPC & Subnet Info
+      debug:
+        msg: 
+          - "VPC ID: {{ vpc_result.vpc.id }}"
+          - "Subnet ID: {{ subnet_result.subnet.id }}"
